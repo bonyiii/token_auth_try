@@ -1,3 +1,8 @@
 logged in? <%= user_signed_in? %>
 <br/>
 Nickname: <%= current_user.try(:nickname) %>
+
+<div id="react-app"></div>
+
+<%= javascript_include_tag 'vendor.bundle' %>
+<%= javascript_include_tag 'bundle' %>

@@ -1,4 +1,4 @@
-var webpack = require('webpack')
+var webpack = require('webpack') //
 var nodeModulesPath = './node_modules'
 
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
