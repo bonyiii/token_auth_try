@@ -1,6 +1,7 @@
 <div>
   <h1>Welcome</h1>
-  <p>Authenticate via Github</p>
-  <li><%= link_to 'Github', '/auth/github' %></li>
+  <p>Authenticate via Github</
+  Nickname: <%= current_user.try(:nickname) %>
+  <li><%= link_to 'Github', "/auth/github?origin=#{pages_show_url}" %></li>
   <li><%= link_to 'Facebook', '/auth/facebook' %></li>
 </div>
