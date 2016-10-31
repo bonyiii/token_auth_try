@@ -24,3 +24,8 @@ TAGS
 # Ignore node modules
 /node_modules
 npm-debug.log
+
+/app/assets/javascripts/bundle.js
+/app/assets/javascripts/bundle.js.map
+/app/assets/javascripts/vendor.bundle.js
+/app/assets/javascripts/vendor.bundle.js.map
