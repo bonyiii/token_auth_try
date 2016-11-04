@@ -1,0 +1,16 @@
+#!/bin/sh
+SESSION=$USER 
+
+tmux -2 new-session -d -s $SESSION
+tmux send-keys "cd .." C-m
+tmux send-keys "cd -" C-m
+tmux send-keys "rails s" C-m
+
+tmux split-window -h
+tmux send-keys "npm start" C-m
+
+tmux new-window
+#tmux send-keys "vim" C-m
+
+tmux select-window -t $SESSION:1
+tmux attach-session -t $SESSION
