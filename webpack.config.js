@@ -33,7 +33,7 @@ var MODULE = {
 //console.log(TARGET)
 config = {
   entry: {
-    app: './frontend/todo.jsx'
+    app: './frontend/counter.js'
   },
   output: {
     path: './app/assets/javascripts',
