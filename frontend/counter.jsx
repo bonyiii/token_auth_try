@@ -2,6 +2,8 @@ import ReactDOM from 'react-dom'
 import React, { PropTypes } from 'react'
 import { createStore } from 'redux'
 
+import './counter_test.js'
+
 const counter = (state = 0, action) => {
   switch(action.type) {
     case 'INCERMENT':
