@@ -1,5 +1,6 @@
 import expect, { createSpy, spyOn, isSpy } from 'expect'
 import deepFreeze from 'deep-freeze'
+import { createStore } from 'redux'
 
 const todo = (state, action) => {
   switch(action.type) {
@@ -22,7 +23,7 @@ const todo = (state, action) => {
   }
 }
 
-const todos = (state, action) => {
+const todos = (state = [], action) => {
   switch(action.type) {
   case 'ADD_TODO':
     return [
@@ -32,10 +33,58 @@ const todos = (state, action) => {
   case 'TOGGLE_TODO':
     return state.map((t) => todo(t, action))
   default:
-    state
+    return state
   }
 }
 
+const visibilityFilter = (state = 'SHOW_ALL', action) => {
+  switch(action.type) {
+  case 'SET_VISIBILITY_FILTER':
+    return action.filter
+  default:
+    return state
+  }
+}
+
+const todoApp = (state = {}, action) => {
+  return {
+    todos: todos(
+      state.todos,
+      action
+    ),
+    visibilityFilter:visibilityFilter(
+      state.visibilityFilter,
+      action
+    )
+  }
+}
+
+const store = createStore(todoApp)
+
+console.log(store.getState())
+
+const testTodoApp = () => {
+  const todoAppAfter = {
+    todos: [{
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    }],
+    visibilityFilter: 'SHOW_ALL'
+  }
+  const action = {
+    type: 'ADD_TODO',
+    id: 0,
+    text: 'Learn Redux'
+  }
+
+  deepFreeze(action)
+  store.dispatch(action)
+
+  expect(
+    store.getState()
+  ).toEqual(todoAppAfter)
+}
 
 const testAddTodo = () => {
   const todoBefore =[]
@@ -100,4 +149,5 @@ const testToggleTodo = () => {
 
 testAddTodo()
 testToggleTodo()
+testTodoApp()
 console.log('All tests passed')
