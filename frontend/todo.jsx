@@ -19,51 +19,96 @@ const initialState = {
   todos: []
 }
 
-function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
-  switch (action.type) {
-    case SET_VISIBILITY_FILTER:
+const todo = (state, action) => {
+  switch(action.type) {
+    case 'ADD_TODO':
+      return {
+        id: action.id,
+        text: action.text,
+        completed: false
+      }
+    case 'TOGGLE_TODO':
+      if (state.id == action.id) {
+        return {
+          ...state,
+          completed: true
+        }
+      }
+      return state
+    default:
+      state
+  }
+}
+
+const todos = (state = [], action) => {
+  switch(action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        todo(undefined, action)
+      ]
+    case 'TOGGLE_TODO':
+      return state.map((t) => todo(t, action))
+    default:
+      return state
+  }
+}
+
+const visibilityFilter = (state = 'SHOW_ALL', action) => {
+  switch(action.type) {
+    case 'SET_VISIBILITY_FILTER':
       return action.filter
     default:
       return state
   }
 }
 
-function todos(state= [], action) {
-  switch (action.type) {
-    case ADD_TODO:
-      return [
-        ...state,
-        {
-          text: action.text,
-          completed: false
-        }
-      ]
-    case TOGGLE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          })
-        }
-        return todo
-      })
-    default:
-      return state
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter
+})
+
+const store = createStore(todoApp)
+
+let nextTodoId = 0
+class TodoApp extends React.Component {
+  render() {
+    return(
+      <div>
+        <input ref={ node => {
+            this.input = node
+          }}
+        />
+        <button onClick={ () => {
+            store.dispatch({
+              type: 'ADD_TODO',
+              text: this.input.value,
+              id: nextTodoId++
+            })
+            this.input.value = ""
+          }}>
+          Add Todo
+        </button>
+        <ul>
+          {this.props.todos.map(todo =>
+            <li key={todo.id}>
+              {todo.text}
+            </li>
+           )}
+        </ul>
+      </div>
+    )
   }
 }
 
-const todoApp = combineReducers({
-  visibilityFilter,
-  todos
-})
+const render = () => {
+  ReactDOM.render(
+    <TodoApp
+        todos={store.getState().todos}
+    />,
+    document.getElementById('react-app')
+  )
+}
 
-let store = createStore(todoApp)
-
-const addTodo = (text) => store.dispatch(TodoActions.add(text))
-const delTodo = (text) => store.dispatch(TodoActions.del(text))
-
-addTodo("megvan")
-addTodo("nagyon atom")
-delTodo(2)
-console.log(store.getState())
-// [ 'Use Redux', 'Read the docs' ]
+store.subscribe(render)
+render()
