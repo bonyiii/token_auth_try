@@ -72,20 +72,31 @@ const store = createStore(todoApp)
 
 let nextTodoId = 0
 class TodoApp extends React.Component {
+
+  addTodo(value) {
+    store.dispatch({
+      type: 'ADD_TODO',
+      text: this.input.value,
+      id: nextTodoId++
+    })
+    this.input.value = ""
+  }
+
   render() {
     return(
       <div>
-      <input ref={ node => {
-        this.input = node
-      }}
+        <input
+            ref={ node => {
+                this.input = node
+              }}
+            onKeyPress={ (e) => {
+                if (e.key === "Enter") {
+                  this.addTodo()
+                }
+              }}
       />
       <button onClick={ () => {
-        store.dispatch({
-          type: 'ADD_TODO',
-          text: this.input.value,
-          id: nextTodoId++
-        })
-        this.input.value = ""
+          this.addTodo()
       }}>
       Add Todo
       </button>
