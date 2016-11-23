@@ -3,6 +3,10 @@ import React, { PropTypes } from 'react'
 import { createStore } from 'redux'
 import * as TodoActions from './actions/todo'
 import { combineReducers } from 'redux'
+//import FilterLink from './ui/filter_link.jsx'
+
+import TodoList from './ui/todo_list.jsx'
+import AddTodo from './ui/add_todo.jsx'
 
 export const ADD_TODO = 'ADD_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
@@ -89,49 +93,14 @@ const getVisibleTodos = (
 const store = createStore(todoApp)
 
 let nextTodoId = 0
-
-const Todo = ({
-  onClick,
-  completed,
-  text
-}) => (
-  <li
-      onClick = {onClick}
-      style = {{
-        textDecoration:
-                       completed ?
-                       'line-through' :
-                       'none'
-      }}
-  >
-    {text}
-  </li>
-)
-
-const TodoList =({
-  todos,
-  onTodoClick
-}) => (
-  <ul>
-  {todos.map(todo =>
-    <Todo
-    key={todo.id}
-    {...todo}
-    onClick={() => onTodoClick(todo.id)}
-    />
-  )}
-  </ul>
-)
-
 class TodoApp extends React.Component {
-
   addTodo(value) {
     store.dispatch({
       type: 'ADD_TODO',
-      text: this.input.value,
+      text: value,
       id: nextTodoId++
     })
-    this.input.value = ""
+
   }
 
   render() {
@@ -145,21 +114,9 @@ class TodoApp extends React.Component {
     )
     return(
       <div>
-        <input
-            ref={ node => {
-                this.input = node
-              }}
-            onKeyPress={ (e) => {
-                if (e.key === "Enter") {
-                  this.addTodo()
-                }
-              }}
-        />
-        <button onClick={ () => {
-            this.addTodo()
-          }}>
-          Add Todo
-        </button>
+        <AddTodo
+            onAddTodo={ (value) => this.addTodo(value) }
+            />
         <TodoList
             todos={visibleTodos}
             onTodoClick={ (id) =>
