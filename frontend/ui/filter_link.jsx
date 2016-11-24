@@ -1,25 +1,23 @@
 const FilterLink = ({
   filter,
   currentFilter,
-  children
+  children,
+  onClick
 }) => {
-  if (currentFilter == filter) {
+  if (currentFilter === filter) {
     return <span>{children}</span>
-  } else {
-    return(
-      <a href="#"
-         onClick={ e =>{
-             e.preventDefault()
-             store.dispatch({
-               type: 'SET_VISIBILITY_FILTER',
-               filter
-             })
-           }}
-      >
-        {children}
-      </a>
-    )
   }
+
+  return(
+    <a href="#"
+       onClick={ e =>{
+           e.preventDefault()
+           onClick(filter)
+         }}
+    >
+      {children}
+    </a>
+  )
 }
 
 export default FilterLink

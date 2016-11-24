@@ -3,10 +3,10 @@ import React, { PropTypes } from 'react'
 import { createStore } from 'redux'
 import * as TodoActions from './actions/todo'
 import { combineReducers } from 'redux'
-//import FilterLink from './ui/filter_link.jsx'
 
 import TodoList from './ui/todo_list.jsx'
 import AddTodo from './ui/add_todo.jsx'
+import Footer from './ui/footer.jsx'
 
 export const ADD_TODO = 'ADD_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
@@ -100,7 +100,6 @@ class TodoApp extends React.Component {
       text: value,
       id: nextTodoId++
     })
-
   }
 
   render() {
@@ -125,55 +124,16 @@ class TodoApp extends React.Component {
                 id: id
               })}
         />
-        <p>
-          Show:
-          { ' ' }
-          <FilterLink
-              filter="SHOW_ALL"
-              currentFilter={visibilityFilter}
-          >
-            All
-          </FilterLink>
-          { ' ' }
-          <FilterLink
-              filter="SHOW_ACTIVE"
-              currentFilter={visibilityFilter}
-          >
-            Active
-          </FilterLink>
-          { ' ' }
-          <FilterLink
-              filter="SHOW_COMPLETED"
-              currentFilter={visibilityFilter}
-          >
-            Completed
-          </FilterLink>
-        </p>
+        <Footer
+            visibilityFilter={visibilityFilter}
+            onFilterClick={ filter =>{
+                store.dispatch({
+                  type: 'SET_VISIBILITY_FILTER',
+                  filter
+                })
+              }}
+        />
       </div>
-    )
-  }
-}
-
-const FilterLink = ({
-  filter,
-  currentFilter,
-  children
-}) => {
-  if (currentFilter == filter) {
-    return <span>{children}</span>
-  } else {
-    return(
-      <a href="#"
-      onClick={ e =>{
-        e.preventDefault()
-        store.dispatch({
-          type: 'SET_VISIBILITY_FILTER',
-          filter
-        })
-      }}
-      >
-      {children}
-    </a>
     )
   }
 }
