@@ -1,10 +1,9 @@
-const FilterLink = ({
-  filter,
-  currentFilter,
+const Link = ({
+  active,
   children,
   onClick
 }) => {
-  if (currentFilter === filter) {
+  if (active) {
     return <span>{children}</span>
   }
 
@@ -12,7 +11,7 @@ const FilterLink = ({
     <a href="#"
        onClick={ e =>{
            e.preventDefault()
-           onClick(filter)
+           onClick()
          }}
     >
       {children}
@@ -20,4 +19,4 @@ const FilterLink = ({
   )
 }
 
-export default FilterLink
+export default Link
