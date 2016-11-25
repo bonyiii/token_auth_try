@@ -116,7 +116,7 @@ const TodoApp = ({
     />
     <Footer
         visibilityFilter={visibilityFilter}
-        onFilterClick={ filter =>{
+        onFilterClick={ filter => {
             store.dispatch({
               type: 'SET_VISIBILITY_FILTER',
               filter
