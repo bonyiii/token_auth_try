@@ -1,5 +1,22 @@
 import TodoList from '../ui/todo_list.jsx'
-import getVisibleTodos from '../reducers/get_visible_todos'
+
+const getVisibleTodos = (
+  todos,
+  filter
+) => {
+  switch(filter) {
+    case 'SHOW_ALL':
+      return todos;
+    case 'SHOW_COMPLETED':
+      return todos.filter(
+        t => t.completed
+      )
+    case 'SHOW_ACTIVE':
+      return todos.filter(
+        t => !t.completed
+      )
+  }
+}
 
 export default class VisibleTodoList extends React.Component {
   componentDidMount() {
