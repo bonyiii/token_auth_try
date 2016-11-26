@@ -12,9 +12,24 @@ const todoApp = combineReducers({
   visibilityFilter
 })
 
+class Provider extends React.Component {
+  getChildContext() {
+    return {
+      store: this.props.store
+    }
+  }
+
+  render() {
+    return this.props.children
+  }
+}
+Provider.childContextTypes = {
+  store: React.PropTypes.object
+}
+
 ReactDOM.render(
-  <TodoApp
-      store={createStore(todoApp)}
-  />,
+  <Provider store={createStore(todoApp)}>
+    <TodoApp />
+  </Provider>,
   document.getElementById('react-app')
 )

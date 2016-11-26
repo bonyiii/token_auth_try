@@ -1,5 +1,5 @@
 let nextTodoId = 0
-const AddTodo = ({
+const AddTodo = (props, {
   store
 }) => {
   let input
@@ -34,4 +34,8 @@ const AddTodo = ({
     </div>
   )
 }
+AddTodo.contextTypes = {
+  store: React.PropTypes.object
+}
+
 export default AddTodo
