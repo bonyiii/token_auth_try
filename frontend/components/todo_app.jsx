@@ -1,15 +1,10 @@
 import store from '../store/store.js'
 import AddTodo from '../ui/add_todo.jsx'
-import TodoList from '../ui/todo_list.jsx'
+import VisibleTodoList from '../components/visible_todo_list.jsx'
 import Footer from '../ui/footer.jsx'
 
-import getVisibleTodos from '../reducers/get_visible_todos'
-
 let nextTodoId = 0
-const TodoApp = ({
-  todos,
-  visibilityFilter
-}) => (
+const TodoApp = () => (
   <div>
     <AddTodo
         onAddTodo={ (text) =>
@@ -19,16 +14,8 @@ const TodoApp = ({
             text
           })}
     />
-    <TodoList
-        todos={getVisibleTodos(todos, visibilityFilter)}
-        onTodoClick={ (id) =>
-          store.dispatch({
-            type: 'TOGGLE_TODO',
-            id: id
-          })}
-    />
-    <Footer
-    />
+    <VisibleTodoList/>
+    <Footer/>
   </div>
 )
 

@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom'
 import React, { PropTypes } from 'react'
-import * as TodoActions from './actions/todo'
 
 import store from './store/store.js'
 import TodoApp from './components/todo_app.jsx'
@@ -19,7 +18,6 @@ const initialState = {
   visibiltyFilter: VisibilityFilters.SHOW_ALL,
   todos: []
 }
-
 
 const render = () => {
   ReactDOM.render(
