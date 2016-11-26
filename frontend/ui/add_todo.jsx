@@ -1,8 +1,6 @@
-import store from '../store/store.js'
-
 let nextTodoId = 0
 const AddTodo = ({
-  onAddTodo
+  store
 }) => {
   let input
 

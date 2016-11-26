@@ -1,9 +1,9 @@
-import store from '../store/store.js'
 import TodoList from '../ui/todo_list.jsx'
 import getVisibleTodos from '../reducers/get_visible_todos'
 
 export default class VisibleTodoList extends React.Component {
   componentDidMount() {
+    const { store } = this.props
     this.unsubscribe =  store.subscribe(() =>
       this.forceUpdate()
     )
@@ -15,6 +15,7 @@ export default class VisibleTodoList extends React.Component {
 
   render() {
     const props = this.props
+    const { store } = this.props
     const state = store.getState()
 
     return(

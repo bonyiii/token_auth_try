@@ -1,8 +1,8 @@
-import store from '../store/store.js'
 import Link from '../ui/link.jsx'
 
 class FilterLink extends React.Component {
   componentDidMount() {
+    const { store } = this.props
     this.unsubscribe =  store.subscribe(() =>
       this.forceUpdate()
     )
@@ -14,6 +14,7 @@ class FilterLink extends React.Component {
 
   render() {
     const props = this.props
+    const { store } = this.props
     const state = store.getState()
 
     return (

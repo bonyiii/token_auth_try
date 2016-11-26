@@ -1,32 +1,23 @@
 import ReactDOM from 'react-dom'
 import React, { PropTypes } from 'react'
 
-import store from './store/store.js'
+import { combineReducers } from 'redux'
+import { createStore } from 'redux'
+
+import todos from './reducers/todos.js'
+import visibilityFilter from './reducers/visibility_filter.js'
+
 import TodoApp from './components/todo_app.jsx'
 
-export const ADD_TODO = 'ADD_TODO'
-export const TOGGLE_TODO = 'TOGGLE_TODO'
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter
+})
 
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
-}
 
-const initialState = {
-  visibiltyFilter: VisibilityFilters.SHOW_ALL,
-  todos: []
-}
-
-const render = () => {
-  ReactDOM.render(
-    <TodoApp
-        {...store.getState()}
-    />,
-    document.getElementById('react-app')
-  )
-}
-
-store.subscribe(render)
-render()
+ReactDOM.render(
+  <TodoApp
+      store={createStore(todoApp)}
+  />,
+  document.getElementById('react-app')
+)

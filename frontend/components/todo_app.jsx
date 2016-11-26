@@ -1,14 +1,12 @@
-import store from '../store/store.js'
 import AddTodo from '../ui/add_todo.jsx'
 import VisibleTodoList from '../components/visible_todo_list.jsx'
 import Footer from '../ui/footer.jsx'
 
-
-const TodoApp = () => (
+const TodoApp = ({store}) => (
   <div>
-    <AddTodo/>
-    <VisibleTodoList/>
-    <Footer/>
+    <AddTodo store={store}/>
+    <VisibleTodoList store={store}/>
+    <Footer store={store}/>
   </div>
 )
 
