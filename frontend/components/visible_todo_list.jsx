@@ -45,6 +45,3 @@ const VisibleTodoList = connect(
 )(TodoList)
 
 export default VisibleTodoList
-VisibleTodoList.contextTypes = {
-  store: React.PropTypes.object
-}
