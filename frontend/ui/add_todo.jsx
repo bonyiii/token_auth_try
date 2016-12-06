@@ -1,7 +1,7 @@
+import { connect } from 'react-redux'
+
 let nextTodoId = 0
-const AddTodo = (props, {
-  store
-}) => {
+let AddTodo = ({ dispatch }) => {
   let input
 
   return (
@@ -12,7 +12,7 @@ const AddTodo = (props, {
     }}
     onKeyPress={ (e) => {
       if (e.key === "Enter") {
-        store.dispatch({
+        dispatch({
           type: 'ADD_TODO',
           id: nextTodoId++,
           text: input.value
@@ -22,7 +22,7 @@ const AddTodo = (props, {
     }}
     />
     <button onClick={ () => {
-      store.dispatch({
+      dispatch({
         type: 'ADD_TODO',
         id: nextTodoId++,
         text: input.value
@@ -34,8 +34,7 @@ const AddTodo = (props, {
     </div>
   )
 }
-AddTodo.contextTypes = {
-  store: React.PropTypes.object
-}
+
+AddTodo = connect()(AddTodo)
 
 export default AddTodo
