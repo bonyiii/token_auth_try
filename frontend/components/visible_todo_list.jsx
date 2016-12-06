@@ -1,4 +1,5 @@
 import TodoList from '../ui/todo_list.jsx'
+import { connect } from 'react-redux'
 
 const getVisibleTodos = (
   todos,
@@ -18,35 +19,32 @@ const getVisibleTodos = (
   }
 }
 
-export default class VisibleTodoList extends React.Component {
-  componentDidMount() {
-    const { store } = this.context
-    this.unsubscribe =  store.subscribe(() =>
-      this.forceUpdate()
-    )
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe()
-  }
-
-  render() {
-    const props = this.props
-    const { store } = this.context
-    const state = store.getState()
-
-    return(
-      <TodoList
-      todos={getVisibleTodos(state.todos, state.visibilityFilter)}
-      onTodoClick={ (id) =>
-        store.dispatch({
-          type: 'TOGGLE_TODO',
-          id: id
-        })}
-      />
+const mapStateToProps = (state) => {
+  return {
+    todos: getVisibleTodos(
+      state.todos,
+      state.visibilityFilter
     )
   }
 }
-VisibleTodoList.contextTypes ={
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTodoClick:(id) => {
+      dispatch({
+        type: 'TOGGLE_TODO',
+        id: id
+      })
+    }
+  }
+}
+
+const VisibleTodoList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoList)
+
+export default VisibleTodoList
+VisibleTodoList.contextTypes = {
   store: React.PropTypes.object
 }
