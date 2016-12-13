@@ -1,35 +1,27 @@
 import { connect } from 'react-redux'
+import { addTodo } from '../actions'
 
-let nextTodoId = 0
 let AddTodo = ({ dispatch }) => {
   let input
 
   return (
     <div>
-    <input
-    ref={ node => {
-      input = node
-    }}
-    onKeyPress={ (e) => {
-      if (e.key === "Enter") {
-        dispatch({
-          type: 'ADD_TODO',
-          id: nextTodoId++,
-          text: input.value
-        })
-        input.value = ""
-      }
-    }}
-    />
-    <button onClick={ () => {
-      dispatch({
-        type: 'ADD_TODO',
-        id: nextTodoId++,
-        text: input.value
-      })
-      input.value = ""
-    }}>
-    Add Todo
+      <input
+          ref={ node => {
+              input = node
+            }}
+          onKeyPress={ (e) => {
+              if (e.key === "Enter") {
+                dispatch(addTodo(input.value))
+                input.value = ""
+              }
+            }}
+      />
+      <button onClick={ () => {
+          dispatch(addTodo(input.value))
+          input.value = ""
+        }}>
+        Add Todo
       </button>
     </div>
   )
