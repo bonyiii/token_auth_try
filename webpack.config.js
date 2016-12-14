@@ -34,7 +34,7 @@ var MODULE = {
 //console.log(TARGET)
 config = {
   entry: {
-    app: './frontend/todo.jsx',
+    app: './frontend/app.jsx',
     vendor: ['react',
              'lodash',
              'node-uuid',
