@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-import React, { PropTypes } from 'react'
 
 import configureStore from './store'
 import Root from './components/root.jsx'
