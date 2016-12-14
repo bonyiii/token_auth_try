@@ -5,6 +5,7 @@ var nodeModulesPath = './node_modules'
 // and makes debugging hard even with source map since variable names that the
 // browser debugger sees are different eg:  _store is h
 var uglifyPlugin = new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
 
 // Makes $, jQuery, React available project wide, without require
 // basically does a "React = require('react')" globally, but still not make React available outside of the project
@@ -33,7 +34,15 @@ var MODULE = {
 //console.log(TARGET)
 config = {
   entry: {
-    app: './frontend/todo.jsx'
+    app: './frontend/todo.jsx',
+    vendor: ['react',
+             'lodash',
+             'node-uuid',
+             'react-dom',
+             'react-redux',
+             'react-router',
+             'redux',
+            ]
   },
   output: {
     path: './app/assets/javascripts',
@@ -42,7 +51,8 @@ config = {
   },
   module: MODULE,
   plugins: [
-    providePlugin
+    providePlugin,
+    commonsPlugin
   ]
 }
 
