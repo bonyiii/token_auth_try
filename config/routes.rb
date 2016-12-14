@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'pages#index'
 
   get 'pages/show', to: 'pages#show'
+  get 'pages/show/*valami', to: 'pages#show'
 end

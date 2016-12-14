@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 
 const FilterLink = ({ filter, children }) => (
   <Link
-  to={filter === 'all' ? '/pages/show/' :filter}
+  to={filter === 'all' ? '/pages/show/' : '/pages/show/' + filter}
   activeStyle={{
     textDecoration: 'none',
     color: 'black'

@@ -13,13 +13,13 @@ const Footer = ({
     </FilterLink>
     { ' ' }
     <FilterLink
-        filter="/pages/show/active"
+        filter="active"
     >
       Active
     </FilterLink>
     { ' ' }
     <FilterLink
-        filter="/pages/show/completed"
+        filter="completed"
     >
       Completed
     </FilterLink>
