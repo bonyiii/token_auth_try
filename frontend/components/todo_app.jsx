@@ -1,6 +1,6 @@
-import AddTodo from '../ui/add_todo.jsx'
+import AddTodo from './add_todo.jsx'
 import VisibleTodoList from '../components/visible_todo_list.jsx'
-import Footer from '../ui/footer.jsx'
+import Footer from './footer.jsx'
 
 const TodoApp = ({ params }) => (
   <div>
