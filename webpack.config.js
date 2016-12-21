@@ -42,6 +42,8 @@ config = {
              'react-redux',
              'react-router',
              'redux',
+             'redux-promise',
+             'redux-logger'
             ]
   },
   output: {
