@@ -10,3 +10,9 @@ export const addTodo = (value) => ({
   id: v4(),
   text: value
 })
+
+export const receiveTodos = (filter, response) => ({
+  type: 'RECEIVE_TODOS',
+  filter,
+  response
+})
