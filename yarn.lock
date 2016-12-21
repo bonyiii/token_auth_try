@@ -1096,6 +1096,10 @@ decamelize@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+deep-diff@0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-0.3.4.tgz#aac5c39952236abe5f037a2349060ba01b00ae48"
+
 deep-extend@~0.4.0:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.1.tgz#efe4113d08085f4e6f9687759810f807469e2253"
@@ -1330,6 +1334,12 @@ find-up@^1.0.0:
   dependencies:
     path-exists "^2.0.0"
     pinkie-promise "^2.0.0"
+
+flux-standard-action@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/flux-standard-action/-/flux-standard-action-0.6.1.tgz#6f34211b94834ea1c3cc30f4e7afad3d0fbf71a2"
+  dependencies:
+    lodash.isplainobject "^3.2.0"
 
 for-in@^0.1.5:
   version "0.1.6"
@@ -1842,6 +1852,33 @@ loader-utils@^0.2.11, loader-utils@^0.2.3, loader-utils@^0.2.6, loader-utils@~0.
 lodash-es@^4.2.1:
   version "4.16.6"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.16.6.tgz#c8552faedaa4d1d591de8da9b3980ef1c52efa08"
+
+lodash._basefor@^3.0.0:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/lodash._basefor/-/lodash._basefor-3.0.3.tgz#7550b4e9218ef09fad24343b612021c79b4c20c2"
+
+lodash.isarguments@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz#2f573d85c6a24289ff00663b491c1d338ff3458a"
+
+lodash.isarray@^3.0.0:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
+
+lodash.isplainobject@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-3.2.0.tgz#9a8238ae16b200432960cd7346512d0123fbf4c5"
+  dependencies:
+    lodash._basefor "^3.0.0"
+    lodash.isarguments "^3.0.0"
+    lodash.keysin "^3.0.0"
+
+lodash.keysin@^3.0.0:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.keysin/-/lodash.keysin-3.0.8.tgz#22c4493ebbedb1427962a54b445b2c8a767fb47f"
+  dependencies:
+    lodash.isarguments "^3.0.0"
+    lodash.isarray "^3.0.0"
 
 lodash@^4.2.0, lodash@^4.2.1:
   version "4.16.5"
@@ -2362,6 +2399,18 @@ redux-devtools-instrument@^1.0.1:
   dependencies:
     lodash "^4.2.0"
     symbol-observable "^0.2.4"
+
+redux-logger@^2.7.4:
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-2.7.4.tgz#891e5d29e7f111d08b5781a237b9965b5858c7f8"
+  dependencies:
+    deep-diff "0.3.4"
+
+redux-promise@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/redux-promise/-/redux-promise-0.5.3.tgz#e97e6c9d3bf376eacb79babe6d906da20112d6d8"
+  dependencies:
+    flux-standard-action "^0.6.1"
 
 regenerate@^1.2.1:
   version "1.3.1"
