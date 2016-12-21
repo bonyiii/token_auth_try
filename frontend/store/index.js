@@ -1,6 +1,4 @@
 import { createStore } from 'redux'
-import throttle from 'lodash/throttle'
-import {saveState, loadState } from '../lib/local_storage'
 import todoApp from '../reducers'
 
 const addLoggingToDispatch = (store) => {
@@ -22,23 +20,13 @@ const addLoggingToDispatch = (store) => {
 }
 
 const configureStore = () => {
-  const persistedState = loadState()
-
   const store = createStore(
     todoApp,
-    persistedState
   )
 
   if (process.env.NODE_ENV !== 'production') {
     store.dispatch = addLoggingToDispatch(store)
   }
-
-  store.subscribe(throttle(() => {
-    saveState({
-      todos: store.getState().todos
-    })
-    console.log(store.getState())
-  }, 1000))
 
   return store
 }
