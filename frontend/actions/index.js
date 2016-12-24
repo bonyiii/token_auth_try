@@ -1,6 +1,11 @@
 import { v4 } from 'node-uuid'
 import * as api from '../lib/fake_api'
 
+export const requestTodos = (filter) => ({
+  type: 'REQUEST_TODOS',
+  filter
+})
+
 export const toggleTodo = (id) => ({
   type: 'TOGGLE_TODO',
   id: id
