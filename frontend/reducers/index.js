@@ -1,13 +1,21 @@
 import { combineReducers } from 'redux'
-import todos, * as fromTodos from './todos.js'
-import visibilityFilter from './visibility_filter.js'
+import byId, * as fromById from './by_id'
+import createList, * as fromList from './create_list'
 
-const todoApp = combineReducers({
-  todos
+const listByFilter = combineReducers({
+  all: createList('all'),
+  active: createList('active'),
+  completed: createList('completed')
 })
 
-export const getVisibleTodos = (state, filter) => (
-  fromTodos.getVisibleTodos(state.todos, filter)
-)
+const todos = combineReducers({
+  byId,
+  listByFilter
+})
 
-export default todoApp
+export default todos
+
+export const getVisibleTodos = (state, filter) => {
+  const ids = fromList.getIds(state.listByFilter[filter])
+  return ids.map(id => fromById.getTodo(state.byId, id))
+}
