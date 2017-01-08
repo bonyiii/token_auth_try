@@ -3,10 +3,16 @@ import * as schema from './schema'
 import * as api from '../lib/fake_api'
 import { getIsFetching } from '../reducers'
 
-export const toggleTodo = (id) => ({
-  type: 'TOGGLE_TODO',
-  id: id
-})
+export const toggleTodo = (id) => (dispatch) => (
+  api.toggleTodo(id).then(
+    response => {
+      dispatch({
+        type: 'TOGGLE_TODO_SUCCESS',
+        response: normalize(response, schema.todo)
+      })
+    }
+  )
+)
 
 export const addTodo = (text) => (dispatch) => (
   api.addTodo(text).then(
