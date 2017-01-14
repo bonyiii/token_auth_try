@@ -52,6 +52,6 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-facebook'
 
-gem 'devise_token_auth', git: 'https://github.com/bonyiii/devise_token_auth'
+gem 'devise'
 gem 'pry'
 gem 'pry-byebug'
