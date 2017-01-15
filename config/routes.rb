@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   get 'pages/show', to: 'pages#show'
   get 'pages/show/*valami', to: 'pages#show'
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end
