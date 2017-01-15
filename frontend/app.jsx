@@ -9,3 +9,10 @@ ReactDOM.render(
   <Root store={store}/>,
   document.getElementById('react-app')
 )
+
+$.ajax({
+  url : '/pages/users',
+  headers: {
+    'Authorization' : jwtToken
+  }
+});
