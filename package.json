@@ -12,6 +12,7 @@
     "babel-loader": "^6.2.7",
     "extract-text-webpack-plugin": "^1.0.1",
     "jshint": "^2.9.4",
+    "jwt-decode": "^2.1.0",
     "loadash": "^0.0.1",
     "node-uuid": "^1.4.7",
     "normalizr": "^3.0.2",

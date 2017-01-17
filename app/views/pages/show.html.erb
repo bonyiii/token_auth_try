@@ -2,7 +2,7 @@ logged in? <%= user_signed_in? %>
 <br/>
 Nickname: <%= current_user.try(:nickname) %>
 <%= javascript_tag do %>
- var jwtToken = '<%= params[:auth_token] %>';
+ var jwtToken = '<%= @auth_token %>';
 <% end %>
 <div id="react-app"></div>
 

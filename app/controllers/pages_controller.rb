@@ -9,7 +9,12 @@ class PagesController < ApplicationController
     render json: User.all
   end
 
+  def user_show
+    render json: User.find(params[:id])
+  end
+
   def show
-    # binding.pry
+    # @auth_token = session.delete(:auth_token)
+    @auth_token = session[:auth_token]
   end
 end

@@ -1,9 +1,11 @@
+import UserDetails from './user_details.jsx'
 import AddTodo from './add_todo.jsx'
 import VisibleTodoList from '../components/visible_todo_list.jsx'
 import Footer from './footer.jsx'
 
 const TodoApp = ({ params }) => (
   <div>
+    <UserDetails/>
     <AddTodo />
     <VisibleTodoList />
     <Footer />

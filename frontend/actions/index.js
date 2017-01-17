@@ -52,3 +52,28 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
     }
   )
 }
+
+export const getUserData = (id) => (dispatch) => {
+  dispatch({
+    type: 'FETCH_USER_DATA',
+    id
+  })
+
+  return getUser(id).then(
+    response => {
+      dispatch({
+        type: 'FETCH_USER_SUCSSES',
+        response: response
+      })
+    }
+  )
+}
+
+export const getUser = (id) => {
+  return $.ajax({
+    url : `/pages/users/${id}`,
+    headers: {
+      'Authorization' : jwtToken
+    }
+  })
+}

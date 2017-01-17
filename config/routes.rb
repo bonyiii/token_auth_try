@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#index'
 
   get 'pages/users', to: 'pages#users'
+  get 'pages/users/:id', to: 'pages#user_show'
   get 'pages/show', to: 'pages#show'
   get 'pages/show/*valami', to: 'pages#show'
 
