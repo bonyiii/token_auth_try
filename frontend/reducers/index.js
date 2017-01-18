@@ -31,5 +31,5 @@ export const getErrorMessage = (state, filter) => (
 )
 
 export const getUser = (state, filter) => (
-  userData.get()
+  state.userData
 )

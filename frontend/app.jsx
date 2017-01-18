@@ -12,7 +12,7 @@ ReactDOM.render(
 )
 
 $.ajax({
-  url : '/pages/users/1',
+  url : '/pages/users/3',
   headers: {
     'Authorization' : jwtToken
   }

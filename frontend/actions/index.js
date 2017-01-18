@@ -55,21 +55,21 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
 
 export const getUserData = (id) => (dispatch) => {
   dispatch({
-    type: 'FETCH_USER_DATA',
+    type: 'FETCH_USER_DATA_REQUEST',
     id
   })
 
-  return getUser(id).then(
+  return fetchUser(id).then(
     response => {
       dispatch({
-        type: 'FETCH_USER_SUCSSES',
-        response: response
+        type: 'FETCH_USER_SUCCESS',
+        response: normalize(response, schema.user)
       })
     }
   )
 }
 
-export const getUser = (id) => {
+export const fetchUser = (id) => {
   return $.ajax({
     url : `/pages/users/${id}`,
     headers: {

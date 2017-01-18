@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import * as actions from '../actions'
+import { getUser } from '../reducers'
 
 let UserDetails = ({
   user,
@@ -8,13 +9,12 @@ let UserDetails = ({
   <div>
     <p>Id: {user.id}</p>
     <p>Nickname: {user.nickname}</p>
-    <button onClick={() => dispatch(actions.getUserData(1))}>Show user data</button>
+    <button onClick={() => dispatch(actions.getUserData(3))}>Show user data</button>
   </div>
 )
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    user: getUser(state)
+  return { user: getUser(state, null) }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => (
