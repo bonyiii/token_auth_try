@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
 import todoApp from '../reducers'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 const configureStore = () => {
   const middlewares = [thunk]
@@ -13,7 +14,9 @@ const configureStore = () => {
   // params: todoApp, persisted state(optional), applyMiddleware(optional)
   return createStore(
     todoApp,
-    applyMiddleware(...middlewares)
+    composeWithDevTools(
+      applyMiddleware(...middlewares)
+    )
   )
 }
 
